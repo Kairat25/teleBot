@@ -13,6 +13,10 @@ dp = Dispatcher(bot=bot)
 async def hello(message: types.Message):
     await bot.send_message(message.chat.id, f"Салам хозяин {message.from_user.full_name}")
 
+@dp.message_handler(commands=['command'])
+async def command_push(message: types.Message):
+    await bot.send_message(message.chat.id, f"/start, /test1, /test2, /mem, /mem1 {message.from_user.full_name}")
+
 
 @dp.message_handler(commands=['test1'])
 async def quinz_1(message: types.Message):
@@ -73,7 +77,7 @@ async def quinz_1(message: types.Message):
 async def echo_message(message: types.Message):
     if message.text.isdigit():
         a = int(message.text)
-        await message.answer( a ** 2 )
+        await message.answer(a ** 2)
     else:
         await message.answer(message.text)
 
